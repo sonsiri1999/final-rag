@@ -1,0 +1,7 @@
+{
+  "student_id": "66114540779",
+  "name": "Sornsiri Phinyaphong",
+  "llm_model": "qwen2.5-coder:7b",
+  "embed_model": "nomic-embed-text",
+  "notes": "Final Exam — Local RAG for Programming"
+}

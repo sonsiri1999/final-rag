@@ -1,0 +1,8 @@
+# library ที่ระบบใช้ (ห้ามลบ) — เพิ่ม library ของตัวเองต่อท้ายได้ เช่น rank-bm25==0.2.2
+fastapi==0.115.12
+uvicorn==0.34.2
+httpx==0.28.1
+numpy==2.2.5
+pydantic==2.11.4
+rank-bm25==0.2.2
+

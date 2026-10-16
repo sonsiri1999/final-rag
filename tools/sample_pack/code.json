@@ -1,0 +1,195 @@
+[
+  {
+    "task_id": "practice-c01",
+    "requirement": "เขียนฟังก์ชัน lowbit(x) คืนค่าบิตต่ำสุดที่เป็น 1 ของจำนวนเต็มไม่ติดลบ x (เช่น 12 = 0b1100 คืนค่า 4) ถ้า x เป็น 0 ให้คืน 0",
+    "language": "python",
+    "entry_point": "lowbit",
+    "signature": "def lowbit(x: int) -> int:",
+    "use_knowledge": false,
+    "timeout_sec": 5,
+    "tests": [
+      {
+        "args": [
+          12
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          8
+        ],
+        "expected": 8
+      },
+      {
+        "args": [
+          6
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          0
+        ],
+        "expected": 0
+      },
+      {
+        "args": [
+          40
+        ],
+        "expected": 8
+      },
+      {
+        "args": [
+          1023
+        ],
+        "expected": 1
+      }
+    ]
+  },
+  {
+    "task_id": "practice-c02",
+    "requirement": "เขียนฟังก์ชัน is_valid_coupon_code(code) ตรวจว่ารหัสคูปองถูกรูปแบบตามคู่มือระบบคูปองร้าน ByteBrew เวอร์ชัน 3.2 หรือไม่ คืนค่า True/False (ตรวจเฉพาะรูปแบบ ไม่ต้องตรวจว่ามีอยู่ในตารางคูปองหรือไม่)",
+    "language": "python",
+    "entry_point": "is_valid_coupon_code",
+    "signature": "def is_valid_coupon_code(code: str) -> bool:",
+    "use_knowledge": true,
+    "timeout_sec": 5,
+    "tests": [
+      {
+        "args": [
+          "BB-AB12-26"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "bb-save-26"
+        ],
+        "expected": true
+      },
+      {
+        "args": [
+          "BB-AB1-26"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "BX-AB12-26"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "BB-AB12-2026"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "BB-AB_2-26"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "BB-ABCDE-26"
+        ],
+        "expected": false
+      },
+      {
+        "args": [
+          "BB-0000-99"
+        ],
+        "expected": true
+      }
+    ]
+  },
+  {
+    "task_id": "practice-c03",
+    "requirement": "เขียนฟังก์ชัน calc_discount(total, code) คืนจำนวนเงินส่วนลด (float) สำหรับบิลที่มียอดซื้อ total บาท และใช้รหัสคูปอง code ตามกติกาการคำนวณในคู่มือระบบคูปองร้าน ByteBrew เวอร์ชัน 3.2 ไม่ต้องตรวจสถานะสมาชิกและวันหมดอายุ",
+    "language": "python",
+    "entry_point": "calc_discount",
+    "signature": "def calc_discount(total: float, code: str) -> float:",
+    "use_knowledge": true,
+    "timeout_sec": 5,
+    "tests": [
+      {
+        "args": [
+          300,
+          "BB-SAVE-26"
+        ],
+        "expected": 30.0
+      },
+      {
+        "args": [
+          1000,
+          "BB-SAVE-26"
+        ],
+        "expected": 50.0
+      },
+      {
+        "args": [
+          150,
+          "BB-SAVE-26"
+        ],
+        "expected": 0.0
+      },
+      {
+        "args": [
+          200,
+          "BB-SAVE-26"
+        ],
+        "expected": 20.0
+      },
+      {
+        "args": [
+          150,
+          "BB-CAKE-26"
+        ],
+        "expected": 30.0
+      },
+      {
+        "args": [
+          100,
+          "BB-CAKE-26"
+        ],
+        "expected": 0.0
+      },
+      {
+        "args": [
+          800,
+          "bb-vip9-26"
+        ],
+        "expected": 150.0
+      },
+      {
+        "args": [
+          600,
+          "BB-VIP9-26"
+        ],
+        "expected": 120.0
+      },
+      {
+        "args": [
+          500,
+          "BB-XXXX-26"
+        ],
+        "expected": 0.0
+      },
+      {
+        "args": [
+          499.99,
+          "BB-VIP9-26"
+        ],
+        "expected": 0.0
+      }
+    ]
+  }
+]

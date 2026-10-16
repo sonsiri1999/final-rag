@@ -1,0 +1,14 @@
+{
+  "core/__init__.py": "5403e3ce54275d754b616cd9fb3aaae9db2fb2f10e7bf9fe0a9c6fee3e53aebf",
+  "core/answers.py": "7b423eba70ba78b6abcdc351bcb5bec1787e06b6dc0a6193f9f88900f4c5fbeb",
+  "core/config.py": "13c1c71f5b4e6f6c8568927ed41ca863be405ca6c91a05c1f24e6b6064fad2c1",
+  "core/fallbacks.py": "410d9fd4e93c9d86b3daeeba0410de6af73418866f27ff1fb0c3b745690734fa",
+  "core/hooks.py": "863957f424c20337762f76fcd7d38410f4b45ef5c0fa8b83efdafbc58e8023bb",
+  "core/ollama_client.py": "3fca4c65d13bbfc06ac40f57c10f8e5fdd16f492dae1ba0e357f499cac915b87",
+  "core/schemas.py": "ef121f68b70470b84fc514f0677247c58d97eda86a428daef89f37a9efbdb9e5",
+  "core/server.py": "35514a2ac62d2ba8799997ce40fa40e24401e8af73c81c5e42c4aa7e40aea11f",
+  "core/store.py": "b6003640fa6545eb3fd1329ecac646e44f61ef18f4e7e21f3771eb6a00afed6b",
+  "core/types.py": "e68f6df7afcdb893ca7c3e1a08005acc75091eb99eb06bba890eb7319ff14c8d",
+  "core/utils.py": "4db8858229c6c69b2d687b244dd292d781c4ca87e429b5ef1c2b16a1b47cc401",
+  "Dockerfile": "154e462246fcb93810560aa6f9a14214dd6e46d229c5615c61ca3d446195e6fb"
+}

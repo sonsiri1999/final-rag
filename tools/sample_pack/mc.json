@@ -1,0 +1,68 @@
+[
+  {
+    "type": "multiple_choice",
+    "text": "ตามคู่มือระบบคูปอง ByteBrew เวอร์ชัน 3.2 รหัสคูปองที่ถูกรูปแบบต้องปิดท้ายด้วยอะไร",
+    "options": [
+      { "text": "ก. เลขปี ค.ศ. 2 หลัก", "is_correct": true },
+      { "text": "ข. เลขปี พ.ศ. 4 หลัก", "is_correct": false },
+      { "text": "ค. รหัสสาขา 3 ตัวอักษร", "is_correct": false },
+      { "text": "ง. ตัวเลขตรวจสอบ (check digit) 1 หลัก", "is_correct": false },
+      { "text": "จ. วันหมดอายุในรูปแบบ DDMM", "is_correct": false }
+    ]
+  },
+  {
+    "type": "multiple_choice",
+    "text": "ลูกค้ามียอดซื้อ 1,000 บาท และใช้คูปอง BB-SAVE-26 จะได้ส่วนลดกี่บาท",
+    "options": [
+      { "text": "ก. 100 บาท", "is_correct": false },
+      { "text": "ข. 50 บาท", "is_correct": true },
+      { "text": "ค. 30 บาท", "is_correct": false },
+      { "text": "ง. 150 บาท", "is_correct": false },
+      { "text": "จ. 0 บาท เพราะยอดซื้อเกินเพดาน", "is_correct": false }
+    ]
+  },
+  {
+    "type": "multiple_choice",
+    "text": "คูปองใดที่สมาชิกระดับ Silver ใช้ไม่ได้",
+    "options": [
+      { "text": "ก. BB-SAVE-26", "is_correct": false },
+      { "text": "ข. BB-CAKE-26", "is_correct": false },
+      { "text": "ค. BB-VIP9-26", "is_correct": true },
+      { "text": "ง. ทุกใบในตาราง เพราะสงวนไว้ให้สมาชิก Gold", "is_correct": false },
+      { "text": "จ. ไม่มีใบใดถูกจำกัดตามระดับสมาชิก", "is_correct": false }
+    ]
+  },
+  {
+    "type": "multiple_choice",
+    "text": "หากพนักงานสแกนคูปองที่ใช้ได้มา 2 ใบในบิลเดียว ระบบ ByteBrew จะทำอย่างไร",
+    "options": [
+      { "text": "ก. รวมส่วนลดของทั้งสองใบเข้าด้วยกัน", "is_correct": false },
+      { "text": "ข. ใช้ใบที่สแกนก่อนเป็นหลัก", "is_correct": false },
+      { "text": "ค. ปฏิเสธบิลนั้นและให้สแกนใหม่", "is_correct": false },
+      { "text": "ง. ใช้ใบที่ให้ส่วนลดมากที่สุดเพียงใบเดียว", "is_correct": true },
+      { "text": "จ. ใช้ใบที่มียอดซื้อขั้นต่ำต่ำที่สุด", "is_correct": false }
+    ]
+  },
+  {
+    "type": "multiple_choice",
+    "text": "ลูกค้าพิมพ์รหัส bb-cake-26 (ตัวพิมพ์เล็กทั้งหมด) ที่จุดชำระเงิน ระบบจะจัดการรหัสนี้อย่างไร",
+    "options": [
+      { "text": "ก. ปฏิเสธทันทีเพราะรหัสต้องเป็นตัวพิมพ์ใหญ่", "is_correct": false },
+      { "text": "ข. แปลงเป็นตัวพิมพ์ใหญ่ก่อน แล้วถือเป็นรหัสเดียวกับ BB-CAKE-26", "is_correct": true },
+      { "text": "ค. ยอมรับ แต่ลดส่วนลดลงครึ่งหนึ่ง", "is_correct": false },
+      { "text": "ง. ส่งต่อให้ผู้จัดการสาขาอนุมัติเอง", "is_correct": false },
+      { "text": "จ. ถือเป็นรหัสระบบเก่าเวอร์ชัน 2.x", "is_correct": false }
+    ]
+  },
+  {
+    "type": "multiple_choice",
+    "text": "คูปองในตารางของคู่มือ ByteBrew เวอร์ชัน 3.2 หมดอายุเมื่อใด",
+    "options": [
+      { "text": "ก. 1 มกราคม 2027 เวลา 00:00 น.", "is_correct": false },
+      { "text": "ข. 30 มิถุนายน 2026 เวลา 23:59 น.", "is_correct": false },
+      { "text": "ค. 31 ธันวาคม 2025 เวลา 23:59 น.", "is_correct": false },
+      { "text": "ง. ไม่มีวันหมดอายุจนกว่าจะประกาศยกเลิก", "is_correct": false },
+      { "text": "จ. 31 ธันวาคม 2026 เวลา 23:59 น.", "is_correct": true }
+    ]
+  }
+]

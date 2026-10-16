@@ -1,0 +1,11 @@
+{
+  "id": "practice",
+  "title": "ชุดฝึกซ้อม — คู่มือระบบคูปอง ByteBrew (เอกสารสมมติ)",
+  "namespace": "practice",
+  "knowledge": [
+    { "doc_id": "bytebrew_coupon", "file": "knowledge/bytebrew_coupon.md", "format": "markdown" }
+  ],
+  "mc": "mc.json",
+  "code": "code.json",
+  "shuffle_seed": 2569
+}
