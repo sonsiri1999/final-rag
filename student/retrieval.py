@@ -15,6 +15,11 @@ try:
 except ImportError:
     _BM25Okapi = None
 
+try:
+    from pythainlp.tokenize import word_tokenize as _th_word_tokenize
+except ImportError:
+    _th_word_tokenize = None
+
 _EN_STOP = {
     "the", "a", "an", "is", "are", "was", "were", "be", "been", "to", "of", "in",
     "on", "for", "with", "as", "by", "at", "from", "or", "and", "that", "this",
@@ -63,11 +68,17 @@ def tokenize_multilingual(text: str) -> list[str]:
         norm_num = num.replace(",", "")
         tokens.append(norm_num)
 
-    # 4. ภาษาไทย: เก็บทั้งคำติดกัน และ character n-grams (3-gram, 4-gram และคำสั้น 2 ตัวอักษร)
+    # 4. ภาษาไทย: ใช้ทั้งคำตัดด้วยพจนานุกรม (pythainlp newmm + word bigrams) และ character n-grams (3-gram, 4-gram)
     for m in _TH_RUN_RE.finditer(text):
         run = m.group(0)
         if run in _TH_STOP:
             continue
+        if _th_word_tokenize is not None:
+            words = [w.strip() for w in _th_word_tokenize(run, engine="newmm") if w.strip()]
+            meaningful = [w for w in words if w not in _TH_STOP and len(w) >= 2]
+            tokens.extend(meaningful)
+            for i in range(len(meaningful) - 1):
+                tokens.append(f"{meaningful[i]}_{meaningful[i + 1]}")
         if len(run) <= 4:
             tokens.append(run)
             continue

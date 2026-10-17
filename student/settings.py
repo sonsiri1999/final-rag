@@ -19,10 +19,10 @@ DOC_PREFIX = "search_document: "    # prefix ที่ nomic-embed-text ใช�
 QUERY_PREFIX = "search_query: "     # prefix ที่ nomic-embed-text ใช้กับคำค้น
 
 # ---------- Retrieval (student/retrieval.py) ----------
-TOP_K = 6                   # จำนวน chunk ที่ส่งให้ LLM ลอง 3–10 (ระบบรับได้สูงสุด 20)
+TOP_K = 7                   # จำนวน chunk ที่ส่งให้ LLM ลอง 3–10 (ระบบรับได้สูงสุด 20)
 QUERY_WITH_OPTIONS = True   # รวมข้อความของตัวเลือก ก–จ เข้าไปในคำค้นด้วย
 HYBRID_WEIGHT = 0.45        # น้ำหนักของคะแนน keyword ใน hybrid search (0 = ใช้ vector อย่างเดียว, ลอง 0.3–0.5)
 MIN_SCORE = None            # ตัด chunk ที่คะแนนต่ำกว่านี้ทิ้ง (None = ไม่ตัด)
 
 # ---------- Prompt (student/prompts.py) ----------
-MAX_CONTEXT_CHARS = 8000    # ความยาวรวมของเอกสารที่ใส่ใน prompt (context ของระบบคือ 8192 token)
+MAX_CONTEXT_CHARS = 9500    # ความยาวรวมของเอกสารที่ใส่ใน prompt (context ของระบบคือ 8192 token)

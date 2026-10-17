@@ -40,13 +40,14 @@ def _enrich_markdown_tables(text: str) -> str:
             while i < n and lines[i].strip().startswith("|") and lines[i].strip().endswith("|"):
                 out.append(lines[i])
                 cells = [c.strip() for c in lines[i].strip().strip("|").split("|")]
-                if len(cells) == len(headers):
-                    pairs = [f"{h} = {c}" for h, c in zip(headers, cells) if h and c]
+                if len(cells) == len(headers) and any(cells):
+                    row_key = cells[0]
+                    pairs = [f'{h}="{c}"' for h, c in zip(headers, cells) if h and c]
                     if pairs:
-                        row_summaries.append("  • " + " | ".join(pairs))
+                        row_summaries.append(f"  • [{row_key}] -> " + ", ".join(pairs))
                 i += 1
             if row_summaries:
-                out.append("สรุปข้อมูลรายแถวจากตารางด้านบน:")
+                out.append("สรุปข้อมูลตารางแบบชัดเจนรายรหัส (ใช้ข้อมูลบรรทัดของรหัสนั้นโดยตรง ห้ามสลับบรรทัด):")
                 out.extend(row_summaries)
             continue
 
@@ -107,14 +108,16 @@ def build_mc_prompt(question: str, options: list[tuple[str, str]], hits) -> list
     system_msg = (
         "You are an expert exam solver for strict document-grounded Multiple Choice Questions (Thai & English).\n"
         "Follow these rules strictly:\n"
-        "1. Rely ONLY on the provided Reference Documents (เอกสารอ้างอิง), even if their rules differ from general knowledge.\n"
+        "1. Rely on the provided Reference Documents (เอกสารอ้างอิง), even if their rules differ from general knowledge. "
+        "(If the Reference Documents do not mention the topic at all, use standard Computer Science knowledge.)\n"
         "2. In the \"reason\" field, think step-by-step:\n"
-        "   - Step 1: Quote the exact rule or table row from the reference document.\n"
+        "   - Step 1: Read ALL paragraphs in the Reference Documents carefully, including secondary paragraphs that state preprocessing rules "
+        "(e.g., 'ก่อนตรวจรูปแบบ... ระบบจะแปลงรหัส... เป็นตัวพิมพ์ใหญ่ทั้งหมดก่อนเสมอ') or exceptions. Quote all relevant rules and the exact `[RowKey] -> ...` table entry.\n"
         "   - Step 2: For numerical/calculation questions:\n"
-        "     * Check minimum threshold first: if `amount < min_requirement`, the result is 0.\n"
+        "     * Look up the exact `[RowKey]` entry for the requested code.\n"
+        "     * Check minimum threshold first: if `amount < ยอดซื้อขั้นต่ำ`, the result is 0.\n"
         "     * Compute the raw formula (e.g., `raw = amount * rate`).\n"
-        "     * Apply maximum cap/ceiling ('จำกัดไม่ให้เกิน X' / 'สูงสุดต่อบิล X'): `final = min(raw, max_cap)`. "
-        "When `raw > max_cap`, the final value is `max_cap` (NOT `raw` and NOT 0).\n"
+        "     * Check `ส่วนลดสูงสุดต่อบิล` for that exact `[RowKey]`: if it is a number `M` (e.g., `50 บาท`), apply the cap `final = min(raw, M)` (e.g., `min(100, 50) = 50`).\n"
         "   - Step 3 (CRITICAL): Compare your final conclusion against the Options list and explicitly state the matching option key at the very end of \"reason\" in this exact format:\n"
         "     `สรุป: คำตอบคือ <ข้อความ> ซึ่งตรงกับตัวเลือก <key>`\n"
         f"3. In the \"answer\" field, output ONLY that exact `<key>` from {allowed_keys}."
@@ -164,8 +167,8 @@ def build_code_prompt(requirement: str, signature: str | None, entry_point: str 
         "2. ALWAYS include any required Python standard library imports (e.g., `import re`, `import math`, `from collections import ...`) "
         "at the VERY TOP of the code block before `def` so `NameError` never happens.\n"
         "3. Use ONLY the Python standard library. Do NOT use `input()`, `sys.stdin`, or `print()`. Do NOT run top-level test code.\n"
-        "4. Check if the requirement forbids any functions/methods (e.g., 'ห้ามใช้ max, sorted, eval'). "
-        "If forbidden, NEVER reference those names or attributes anywhere in the AST.\n"
+        "4. Check if the requirement forbids any functions, methods, or loops (e.g., 'ห้ามใช้ max, min, sum, sorted, len, str, for, while, eval'). "
+        "If forbidden, NEVER reference those names, attributes, or AST nodes anywhere in the code. Handle empty/zero/negative edge cases safely and return the exact type in the signature.\n"
         "5. When Reference Documents (เอกสารอ้างอิง) are provided:\n"
         "   - If there is a table of items/codes/rules, represent EVERY row and EVERY column in a dictionary (e.g., `'type'`, `'value'`, `'min_spend'`, `'max_discount'` for each code). "
         "NEVER hardcode one row's `min_spend` (like 200) for other rows that have different `min_spend` (like 150 or 500)!\n"
